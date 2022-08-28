@@ -19,43 +19,41 @@ float item_calculation(item);
 void display_bill(customer,item*);
 
 void main(){
-		customer cust;
-		get_customer_info(&cust);
-		item items[100];
-	    get_item_info(items);
-		display_bill(cust,items);
+	customer cust;
+	get_customer_info(&cust);
+	item items[100];
+    get_item_info(items);
+	display_bill(cust,items);
 }
 	
 void get_customer_info( customer *cust){
 	
 	printf("Enter the Customer Details\n\tName : ");
-			scanf("%s",&cust->name);
+	scanf("%s",&cust->name);
 		
-		printf("\tPhone NO.  : ");
-		scanf("%d",&cust->Ph_no);
+	printf("\tPhone NO.  : ");
+	scanf("%d",&cust->Ph_no);
 		
-		printf("\tAddress  : ");
-		scanf("%s",&cust->Address);
-	
+	printf("\tAddress  : ");
+	scanf("%s",&cust->Address);
 	}
 	
 void display_bill(customer cust,item* items){
 	
-		printf("\n\t----------------------------------------------------------------");
-		printf("\n\t####################customer Detail#############################");
-		printf("\n\n\n");
-		printf("\tName : %s",cust.name);
-		printf("\tPh_No  : %d",cust.Ph_no);
-		printf("\tAddress : %s",cust.Address);
-		printf("\n\t-----------------------------------------------------------------");
-		printf("\n\n\n\t-----------------------------------------------------------------");
-	//	printf("\n\n\t\t\t\tItems on cart ");
-		printf("\n\tName\tMRP\tGST\tQTY\tGST Amount\tTotal Amount");
-		printf("\n\t-----------------------------------------------------------------");
-		int i;
-		float all_item_total=0;
-		for(i=0;i<2;i++){
-			printf("\n\t%s",items[i].Item);
+	printf("\n\t----------------------------------------------------------------");
+	printf("\n\t####################customer Detail#############################");
+	printf("\n\n\n");
+	printf("\tName : %s",cust.name);
+	printf("\tPh_No  : %d",cust.Ph_no);
+	printf("\tAddress : %s",cust.Address);
+	printf("\n\t-----------------------------------------------------------------");
+	printf("\n\n\n\t-----------------------------------------------------------------");
+	printf("\n\tName\tMRP\tGST\tQTY\tGST Amount\tTotal Amount");
+	printf("\n\t-----------------------------------------------------------------");
+	int i;
+	float all_item_total=0;
+	for(i=0;i<2;i++){
+  			printf("\n\t%s",items[i].Item);
 			printf("\t%d",items[i].MRP);
 			printf("\t%d",items[i].GST);
 			printf("\t%d",items[i].QTY);
@@ -92,9 +90,7 @@ void get_item_info(item* items){
 }
 
 float item_calculation(item item){
-		
 	float gst=((item.MRP*item.GST)/100)*item.QTY;
-	
 	return gst;		
 }
 
