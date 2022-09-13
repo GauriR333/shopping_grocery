@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h >
+
 typedef struct customer{
 	char name[10];
 	int Ph_no;
@@ -34,7 +35,7 @@ void get_customer_info( customer *cust){
 	printf("\tEnter the Customer Details\n\tName : ");
 	scanf("%s",&cust->name);
 		
-	printf("\tPhone NO.  : ");
+	printf("\tPhone number  : ");
 	scanf("%d",&cust->Ph_no);
 		
 	printf("\tAddress  : ");
@@ -43,17 +44,18 @@ void get_customer_info( customer *cust){
 	
 void display_bill(customer cust,item* items){
 	
-	printf("\n\t----------------------------------------------------------------");
-	printf("\n\t####################customer Detail#############################");
+	printf("\n\t----------------------------------------------------------------\n");
+	printf("\n\t#################### Customer Invoice #############################");
 	printf("\n\n\n");
 	printf("\tName : %s",cust.name);
 	printf("\tPh_No  : %d",cust.Ph_no);
 	printf("\tAddress : %s",cust.Address);
-	printf("\n\t-----------------------------------------------------------------");
+	
 	printf("\n\n\n\t-----------------------------------------------------------------");
-	printf("\n\n\n\t********************Your chart Bill********************\n");
+	printf("\n\n\n\t********************Items on Bill********************\n");
 	printf("\n\tName\tMRP\tGST\tQTY\tGST Amount\tTotal Amount");
 	printf("\n\t-----------------------------------------------------------------");
+	
 	int i;
 	float all_item_total=0;
 	for(i=0;i<item_counter;i++){
@@ -90,113 +92,106 @@ void get_item_info(item* items){
 		printf("\tQuntity : ");
 		scanf("%d",&items[i].QTY);
 		
-		printf("\n Do you want to add more items ? (y/n) : ");
+		printf("\n\tDo you want to add more items ? (y/n) : ");
 		scanf("%s",&choice);
 	}while(strcmp(choice,"y")==0);
 }
+
 
 float item_calculation(item item){
 	float gst=((item.MRP*item.GST)/100)*item.QTY;
 	return gst;		
 }
+
+
 void show_menu(){
 	
-	printf("\n\t*************************WEL-COME TO SHOPE*************************\n");
 		
 	while(1){
 	
+	printf("\n\t~~~~~~~~~~~~~~~~~~~~~~~~ Welcome to Supermarket ~~~~~~~~~~~~~~~~~~~~~");
 	int choice;
-	printf("\n\t 1. Enter customer information " );
+	printf("\n\t 1. Add customer information" );
 	printf("\n\t 2. Add to cart ");
-	printf("\n\t 3. Modify cart ");
-	printf("\n\t 4. Modify customer detil  ");
-	printf("\n\t 5. Show bill ");	
-	printf("\n\t 6. Exit ");
+//	printf("\n\t 3. Modify cart ");
+	printf("\n\t 3. Modify customer details  ");
+	printf("\n\t 4. Show bill ");
+	printf("\n\t 5. Exit ");
 	printf("\n\t Enter choice : ");
 	scanf("%d",&choice);
 	
-		switch(choice){
-			
-			case 1:
-				get_customer_info(&cust);
-				
+	switch(choice){
+		
+		case 1:
+			get_customer_info(&cust);
 			break;		
 			
-			case 2:
-				
-			 	get_item_info(items);
-			 	
+		case 2:
+		 	get_item_info(items);			 	
 			break;
 		
-			case 3:
-			
-			break;
+//		case 3:
+//			
+//			break;
 		
-			case 4:
+		case 3:
 			modify_customer_detil();
-			
 			break;
 			
-			case 5:
-				display_bill(cust,items);
-	
+		case 4:
+			display_bill(cust,items);
 			break;
 		
-			case 6:
+		case 5:
 			exit(0);
-	//	break;
+			break;
 		 
-			default:
+		default:
 			printf("\n\tPlease enter correct choice !");
-				
 		}
-	} 
-	
+	} 	
 }
 
 void modify_customer_detil(){
+
+	int choice;
+	int exit_choice=0;
+
+	while(exit_choice==0){
 	
-		int choice,i;
-		//int true;
-		choice=i;
-	
-	for(i=0;i<=4;i++){
-	
-		printf("\n\t----\t Here you change information  ----\n");
-		printf("\n\t 1. Chang Name ");
+		printf("\n\t----\t Here you change customer information  ----\n");
+		printf("\n\t 1. Change Name ");
 		printf("\n\t 2. Change phone no. ");
-		printf("\n\t 3. Change Addrees ");
-		printf("\n\t 4. Chages Done ");
+		printf("\n\t 3. Change Address ");
+		printf("\n\t 4. Changes Done ");
 		printf("\n\t Enter choice : ");
 		scanf("%d",&choice);
-			
-		//	if(choice==true){
-			
-					switch(choice){
+		
+		switch(choice){
 				
-					case 1:
-					printf("\n\tName : ");
-					scanf("\n\t%s",&cust.name);
-					break;
-					
-					case 2:
-					printf("\n\tPhone no. : ");
-					scanf("\n\t%d",&cust.Ph_no);
-					break;
+		case 1:
+			printf("\n\tName : ");
+			scanf("\n\t%s",&cust.name);
+			break;
+
+		case 2:
+			printf("\n\tPhone no. : ");
+			scanf("\n\t%d",&cust.Ph_no);
+			break;
 				
-					case 3:
-					printf("\n\tAddress : ");
-					scanf("\n\t%s",&cust.Address);
-					break;
+		case 3:
+			printf("\n\tAddress : ");
+			scanf("\n\t%s",&cust.Address);
+			break;
 				
-					case 4:
-					break;
+		case 4:
+			exit_choice = 1;
+			break;
 	
-					//default:
-					//printf("Please enter your choice ?");	
-					}
-		//}else;
-			
+		default:
+			printf("Please enter correct choice!!");
+			break;
+		}
 	}
 }
 
